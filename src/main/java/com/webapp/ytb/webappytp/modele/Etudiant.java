@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
+
 @Entity
 @Table(name = "Etudiant")
 @Getter
@@ -38,5 +39,9 @@ public class Etudiant {
     @Column
     @Lob
     private byte[] photo;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role; // Champ pour indiquer le rôle de l'étudiant (ADMIN, SUPERADMIN, USER)
+
 
 }
