@@ -35,8 +35,8 @@ public class Etudiant {
     @NotBlank(message = "Le champ 'mot de passe' est obligatoire.")
     private String mdp;
 
-    @Column
     @Lob
+    @Column(nullable = true) // Permet à la colonne "photo" d'être nulle
     private byte[] photo;
 
     @Enumerated(EnumType.STRING)
