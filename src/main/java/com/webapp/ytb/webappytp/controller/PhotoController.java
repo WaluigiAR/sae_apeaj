@@ -3,7 +3,6 @@ package com.webapp.ytb.webappytp.controller;
 import java.io.IOException;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,7 @@ import com.webapp.ytb.webappytp.repository.EtudiantRepository;
 public class PhotoController {
     private final EtudiantRepository etudiantRepository;
 
-    @Autowired
+
     public PhotoController(EtudiantRepository etudiantRepository) {
         this.etudiantRepository = etudiantRepository;
     }

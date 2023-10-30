@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.webapp.ytb.webappytp.modele.Etudiant;
 import com.webapp.ytb.webappytp.repository.EtudiantRepository;
-import java.util.Arrays;
-import java.util.List;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -23,7 +21,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         Etudiant user = etudiantRepository.findUserByLogin(login);
-        List<String> roles = Arrays.asList(user.getRole().toString());
         UserDetails userDetails =
                 org.springframework.security.core.userdetails.User.builder()
                         .username(user.getLogin())
