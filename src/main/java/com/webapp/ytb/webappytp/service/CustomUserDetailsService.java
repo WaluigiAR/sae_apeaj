@@ -6,31 +6,29 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.webapp.ytb.webappytp.modele.User;
-import com.webapp.ytb.webappytp.repository.UserRepository;
-
-import java.util.ArrayList;
+import com.webapp.ytb.webappytp.modele.Etudiant;
+import com.webapp.ytb.webappytp.repository.EtudiantRepository;
 import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private EtudiantRepository etudiantRepository;
 
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CustomUserDetailsService(EtudiantRepository etudiantRepository) {
+        this.etudiantRepository = etudiantRepository;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findUserByEmail(email);
-        List<String> roles = Arrays.asList(user.getRole());
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        Etudiant user = etudiantRepository.findUserByLogin(login);
+        List<String> roles = Arrays.asList(user.getRole().toString());
         UserDetails userDetails =
                 org.springframework.security.core.userdetails.User.builder()
-                        .username(user.getEmail())
-                        .password(user.getPassword())
-                        .roles("USER")
+                        .username(user.getLogin())
+                        .password(user.getMdp())
+                        .roles(user.getRole().toString())
                         .build();
 
         return userDetails;
