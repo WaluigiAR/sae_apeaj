@@ -34,6 +34,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
             p.setLogin(utilisateur.getLogin());
             p.setMdp(utilisateur.getMdp());
             p.setPhoto(utilisateur.getPhoto());
+            p.setRole(utilisateur.getRole());
             return utilisateurRepository.save(p);
         }).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     }

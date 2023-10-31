@@ -1,4 +1,5 @@
 package com.webapp.ytb.webappytp.controller;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -13,14 +14,13 @@ public class HomeController {
         return "redirect:/accueil";
     }
 
+
     @GetMapping("/accueil")
-    public String accueil(Model model) {
-        // Récupérez l'utilisateur connecté
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails) principal).getUsername();
-            model.addAttribute("username", username);
-        }
+    public String yourPage(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+        String username = userDetails.getUsername();
+        String role = userDetails.getAuthorities().stream().findFirst().get().getAuthority();
+        model.addAttribute("username", username);
+        model.addAttribute("role", role);
         return "index";
     }
 }
