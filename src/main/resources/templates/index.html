@@ -6,15 +6,8 @@
 </head>
 <body>
     <h1>
-        Utilisateur connecté :
-        <span th:text="${username}"></span>
-        <br>
-        Rôle de l'utilisateur :
-        <span th:text="${role}"></span>
+        Utilisateur connecté : <span th:text="${username}"></span>
     </h1>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Se Déconnecter" />
-    </form>
 <body class="colonne centre">
     <main class="colonne">
         <div class="titre border">FICHE D'INTERVENTION N°01</div>
