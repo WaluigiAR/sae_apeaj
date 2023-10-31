@@ -6,21 +6,21 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.webapp.ytb.webappytp.modele.Etudiant;
-import com.webapp.ytb.webappytp.repository.EtudiantRepository;
+import com.webapp.ytb.webappytp.modele.Utilisateur;
+import com.webapp.ytb.webappytp.repository.UtilisateurRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private EtudiantRepository etudiantRepository;
+    private UtilisateurRepository utilisateurRepository;
 
-    public CustomUserDetailsService(EtudiantRepository etudiantRepository) {
-        this.etudiantRepository = etudiantRepository;
+    public CustomUserDetailsService(UtilisateurRepository utilisateurRepository) {
+        this.utilisateurRepository = utilisateurRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Etudiant user = etudiantRepository.findUserByLogin(login);
+        Utilisateur user = utilisateurRepository.findUserByLogin(login);
         UserDetails userDetails =
                 org.springframework.security.core.userdetails.User.builder()
                         .username(user.getLogin())

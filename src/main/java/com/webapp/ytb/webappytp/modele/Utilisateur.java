@@ -9,12 +9,12 @@ import jakarta.validation.constraints.NotBlank;
 
 
 @Entity
-@Table(name = "Etudiant")
+@Table(name = "Utilisateur")
 @Getter
 @Setter
 @NoArgsConstructor
 @Valid
-public class Etudiant {
+public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

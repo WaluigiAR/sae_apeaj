@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webapp.ytb.webappytp.modele.Etudiant;
-import com.webapp.ytb.webappytp.service.EtudiantService;
+import com.webapp.ytb.webappytp.modele.Utilisateur;
+import com.webapp.ytb.webappytp.service.UtilisateurService;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -21,28 +21,28 @@ import org.springframework.validation.annotation.Validated;
 @RequestMapping("/etu")
 @Validated
 @AllArgsConstructor
-public class EtudiantController {
-    private final EtudiantService etudiantService;
+public class UtilisateurController {
+    private final UtilisateurService utilisateurService;
 
 
     @PostMapping("/create")
-    public Etudiant create(@Valid @RequestBody Etudiant etudiant) {
-        return etudiantService.creer(etudiant);
+    public Utilisateur create(@Valid @RequestBody Utilisateur utilisateur) {
+        return utilisateurService.creer(utilisateur);
     }
 
     @GetMapping("/read")
-    public List<Etudiant> read(){
-        return etudiantService.lire();
+    public List<Utilisateur> read(){
+        return utilisateurService.lire();
     }
 
     @PutMapping("/update/{id}")
-    public Etudiant update(@PathVariable Long id, @RequestBody Etudiant etudiant){
-        return etudiantService.modifier(id, etudiant);
+    public Utilisateur update(@PathVariable Long id, @RequestBody Utilisateur utilisateur){
+        return utilisateurService.modifier(id, utilisateur);
     }
 
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
-        return etudiantService.supprimer(id);
+        return utilisateurService.supprimer(id);
     }
 
 }
