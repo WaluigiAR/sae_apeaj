@@ -26,11 +26,10 @@ public class SecurityConfig {
             .authorizeRequests(authorizeRequests ->
                 authorizeRequests
                     .requestMatchers(staticResources).permitAll()
-                    .requestMatchers("/login").permitAll() // autoriser les requetes non authentifiees sur /utilisateur/read
+                    .requestMatchers("/login").permitAll()
                     .anyRequest().authenticated()
             )
-            .formLogin()
-                .loginPage("/login");
+            .formLogin(Customizer.withDefaults());
 
         return http.build();
     }
