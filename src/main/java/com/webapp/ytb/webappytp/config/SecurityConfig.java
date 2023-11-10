@@ -14,13 +14,23 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        //repertoires authorises sans etre authentifie
+        String[] staticResources  =  {
+            "/css/**",
+            "/images/**",
+            "/fonts/**",
+            "/scripts/**",
+        };
+
         http
             .authorizeRequests(authorizeRequests ->
                 authorizeRequests
-                    .requestMatchers("/utilisateur/read").permitAll() // autoriser les requetes non authentifiees sur /utilisateur/read
+                    .requestMatchers(staticResources).permitAll()
+                    .requestMatchers("/login").permitAll() // autoriser les requetes non authentifiees sur /utilisateur/read
                     .anyRequest().authenticated()
             )
-            .formLogin(Customizer.withDefaults());
+            .formLogin()
+                .loginPage("/login");
 
         return http.build();
     }

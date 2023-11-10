@@ -11,8 +11,14 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "redirect:/accueil";
+        return "accueil";
     }
+    
+    @GetMapping("/login")
+    public String login() {
+        return "accueil";
+    }
+
 
     @GetMapping("/accueil")
     public String redirectToAccueil() {
