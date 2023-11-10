@@ -1,6 +1,5 @@
 package com.webapp.ytb.webappytp.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -16,8 +15,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(authorizeRequests ->
+            .authorizeRequests(authorizeRequests ->
                 authorizeRequests
+                    .requestMatchers("/utilisateur/read").permitAll() // autoriser les requetes non authentifiees sur /utilisateur/read
                     .anyRequest().authenticated()
             )
             .formLogin(Customizer.withDefaults());
@@ -30,5 +30,7 @@ public class SecurityConfig {
     public NoOpPasswordEncoder passwordEncoder() {
         return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
     }
+    
+    
 
 }

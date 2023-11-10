@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
 @RestController
-@RequestMapping("/etu")
+@RequestMapping("/utilisateur")
 @Validated
 @AllArgsConstructor
 public class UtilisateurController {

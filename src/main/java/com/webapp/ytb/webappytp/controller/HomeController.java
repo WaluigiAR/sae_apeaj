@@ -10,9 +10,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/")
-    public String redirectToAccueil() {
-        return "redirect:/menu";
+    public String home() {
+        return "redirect:/accueil";
     }
+
+    @GetMapping("/accueil")
+    public String redirectToAccueil() {
+        return "accueil";
+    }
+
+    @GetMapping("/select_fiche")
+    public String select_fiche() {
+        return "select_fiche";
+    }
+    
+    @GetMapping("/ajout_apprenti")
+    public String ajout_apprenti() {
+        return "ajout_apprenti";
+    }
+
 
     @GetMapping("/fiche")
     public String fiche(Model model, @AuthenticationPrincipal UserDetails userDetails) {
@@ -23,13 +39,13 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/accueil_admin")
     public String admin(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         String role = userDetails.getAuthorities().stream().findFirst().get().getAuthority();
         if ("ROLE_ADMIN".equals(role)) {
-            return "admin";
+            return "accueil_admin";
         }
-        return "redirect:/menu";
+        return "redirect:/accueil";
     }
 
     @GetMapping("/menu")
